@@ -1,45 +1,53 @@
 //variables
+let bookTitle = document.querySelector("#title");
+let bookAuthor = document.querySelector("#author");
+let bookPages = document.querySelector("#pages");
+let yesRead = document.querySelector("#yes-button");
+let noRead = document.querySelector("#no-button");
 
-
-/*let object = {
+let object = {
     author: 'author1',
-    title: 'title1'
+    title: 'title1',
+    pages: 123
 }
 
 let object1 = {
     author: 'author2',
-    title: 'title2'
-}*/
+    title: 'title2',
+    pages: 69
+}
 
-const myLibrary = [
-    
+let myLibrary = [
+    object, 
+    object1
 ];
 
 
 //displaying the objects
 function addTest() {
     let newDiv = document.createElement("div");
-    let para = document.createElement("p");
+        
     
     for (let i = 0; i < myLibrary.length; i++) {
         let newAuthor = document.createTextNode(`Author: ${myLibrary[i].author}`);
         let newTitle = document.createTextNode(`Title: ${myLibrary[i].title}`);
         let newPages = document.createTextNode(`Number of pages: ${myLibrary[i].pages}`);
-        para.appendChild(newAuthor);
-        para.appendChild(newTitle);
-        para.appendChild(newPages);
-        newDiv.appendChild(para);
+        let paraAuth = document.createElement("p");
+        let paraTit = document.createElement("p");
+        let paraPag = document.createElement("p");
+        paraAuth.appendChild(newAuthor);        
+        newDiv.appendChild(paraAuth);
+        paraTit.appendChild(newTitle);
+        newDiv.appendChild(paraTit);
+        paraPag.appendChild(newPages);  
+        newDiv.appendChild(paraPag);
         document.body.appendChild(newDiv);
-    }   
-
+    }
+    myLibrary = [];   
 }
 
 
-let bookTitle = document.querySelector("#title");
-let bookAuthor = document.querySelector("#author");
-let bookPages = document.querySelector("#pages");
-let yesRead = document.querySelector("#yes-button");
-let noRead = document.querySelector("#no-button");
+
 
 //book constructor
 function Book(title, author, pages, read){
@@ -59,11 +67,21 @@ function addBook(){
         }
         return pageNumber;
     };
-    let read = prompt("read? :");
+    let read = prompt("Read?")
+    /*let read = () => {
+        let yesno = prompt("Is the book read?");
+        yesno.toLowerCase();
+        while(yesno != 'yes' || yesno != 'no'){
+            yesno = prompt("Is the book read?");
+        }
+        return yesno;
+    }*/
     let newBook = new Book(title, author, pages, read);
 
     myLibrary.push(newBook);
     addTest();
 }
 
-    
+addEventListener("DOMContentLoaded", () => {
+    addTest();
+})
