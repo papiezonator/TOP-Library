@@ -74,31 +74,9 @@ function Book(title, author, pages, read){
 }
 
 function addBook(title, author, pages, read){
-    /*let title = prompt("Title: ");
-    let author = prompt("Author: ");
-    
-    let pages = () => {
-        let pageNumber;
-        while(Number.isInteger(pageNumber) != true){
-            pageNumber = parseInt(prompt("Number of pages: "));
-        }
-        return pageNumber;
-    };
-    let read = prompt("Read?")
-    let read = () => {
-        let yesno = prompt("Is the book read?");
-        yesno.toLowerCase();
-        while(yesno != 'yes' || yesno != 'no'){
-            yesno = prompt("Is the book read?");
-        }
-        return yesno;
-    }*/
     let newBook = new Book(title, author, pages, read);
 
     myLibrary.push(newBook);
     addTest();
 }
 
-addEventListener("DOMContentLoaded", () => {
-    addTest();
-})
