@@ -6,28 +6,32 @@ let bookAuthor = document.querySelector("#author");
 let bookPages = document.querySelector("#pages");
 let yesRead = document.querySelector("#yes-button");
 let noRead = document.querySelector("#no-button");
+let submitButton = document.querySelector("#submit");
 
-let object = {
-    author: 'author1',
-    title: 'title1',
-    pages: 123
-}
 
-let object1 = {
-    author: 'author2',
-    title: 'title2',
-    pages: 69
-}
-
-let myLibrary = [
-    object, 
-    object1
-];
+let myLibrary = [];
 
 //creating a form on the button click
 bookButton.addEventListener('click', () => {
     dialogForm.showModal();    
 
+})
+
+//submitting the form
+submitButton.addEventListener('click', () => {
+    if(yesRead.checked === true){
+        addBook(bookTitle.value, bookAuthor.value, bookPages.value, yesRead.value);
+    }
+    
+    if(noRead.checked === true){
+        addBook(bookTitle.value, bookAuthor.value, bookPages.value, noRead.value);
+    }
+
+    bookTitle.value = '';
+    bookAuthor.value = '';
+    bookPages.value = '';
+    yesRead.checked = false;
+    noRead.checked = false;
 })
 
 
@@ -40,15 +44,19 @@ function addTest() {
         let newAuthor = document.createTextNode(`Author: ${myLibrary[i].author}`);
         let newTitle = document.createTextNode(`Title: ${myLibrary[i].title}`);
         let newPages = document.createTextNode(`Number of pages: ${myLibrary[i].pages}`);
+        let read = document.createTextNode(`Read: ${myLibrary[i].read}`)
         let paraAuth = document.createElement("p");
         let paraTit = document.createElement("p");
         let paraPag = document.createElement("p");
+        let paraRead = document.createElement("p");
         paraAuth.appendChild(newAuthor);        
         newDiv.appendChild(paraAuth);
         paraTit.appendChild(newTitle);
         newDiv.appendChild(paraTit);
         paraPag.appendChild(newPages);  
         newDiv.appendChild(paraPag);
+        paraRead.appendChild(read);
+        newDiv.appendChild(paraRead);
         document.body.appendChild(newDiv);
     }
     myLibrary = [];   
@@ -61,13 +69,14 @@ function addTest() {
 function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
-    this.pages = pages();
+    this.pages = pages;
     this.read = read;
 }
 
-function addBook(){
-    let title = prompt("Title: ");
+function addBook(title, author, pages, read){
+    /*let title = prompt("Title: ");
     let author = prompt("Author: ");
+    
     let pages = () => {
         let pageNumber;
         while(Number.isInteger(pageNumber) != true){
@@ -76,7 +85,7 @@ function addBook(){
         return pageNumber;
     };
     let read = prompt("Read?")
-    /*let read = () => {
+    let read = () => {
         let yesno = prompt("Is the book read?");
         yesno.toLowerCase();
         while(yesno != 'yes' || yesno != 'no'){
