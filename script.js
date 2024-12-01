@@ -1,4 +1,6 @@
 //variables
+let dialogForm = document.querySelector("#dialogForm");
+let bookForm = document.querySelector("bookForm")
 let bookTitle = document.querySelector("#title");
 let bookAuthor = document.querySelector("#author");
 let bookPages = document.querySelector("#pages");
@@ -21,6 +23,12 @@ let myLibrary = [
     object, 
     object1
 ];
+
+//creating a form on the button click
+bookButton.addEventListener('click', () => {
+    dialogForm.showModal();    
+
+})
 
 
 //displaying the objects
