@@ -45,10 +45,13 @@ function addTest() {
         let newTitle = document.createTextNode(`Title: ${myLibrary[i].title}`);
         let newPages = document.createTextNode(`Number of pages: ${myLibrary[i].pages}`);
         let read = document.createTextNode(`Read: ${myLibrary[i].read}`)
+        let test = `${myLibrary[i]}`;
+        let button = document.createTextNode("Remove");
         let paraAuth = document.createElement("p");
         let paraTit = document.createElement("p");
         let paraPag = document.createElement("p");
         let paraRead = document.createElement("p");
+        let removeButton = document.createElement("button");
         paraAuth.appendChild(newAuthor);        
         newDiv.appendChild(paraAuth);
         paraTit.appendChild(newTitle);
@@ -57,7 +60,16 @@ function addTest() {
         newDiv.appendChild(paraPag);
         paraRead.appendChild(read);
         newDiv.appendChild(paraRead);
+        removeButton.appendChild(button);
+        newDiv.appendChild(removeButton);
+        removeButton.addEventListener('click', () => {
+            myLibrary.splice(myLibrary[i], 1);
+            newDiv.remove();
+        })
         document.body.appendChild(newDiv);
+        
+
+
     } 
 }
 
