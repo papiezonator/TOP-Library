@@ -40,7 +40,7 @@ function addTest() {
     let newDiv = document.createElement("div");
         
     
-    for (let i = 0; i < myLibrary.length; i++) {
+    for (let i = myLibrary.length-1 ; i < myLibrary.length; i++) {
         let newAuthor = document.createTextNode(`Author: ${myLibrary[i].author}`);
         let newTitle = document.createTextNode(`Title: ${myLibrary[i].title}`);
         let newPages = document.createTextNode(`Number of pages: ${myLibrary[i].pages}`);
@@ -58,8 +58,7 @@ function addTest() {
         paraRead.appendChild(read);
         newDiv.appendChild(paraRead);
         document.body.appendChild(newDiv);
-    }
-    myLibrary = [];   
+    } 
 }
 
 
